@@ -6,7 +6,7 @@ class ShootingGame{
     getRandomItem(){
         let item = Math.floor(Math.random()*2)
         switch (item){
-            case 0 :  return {health: 10, power: 0};
+            case 0 : return {health: 10, power: 0};
             case 1 : return {health: 0, power: 10};
         }
     }
@@ -23,12 +23,13 @@ class ShootingGame{
 
             console.log(attack, "attack", defend)
             defend.damage(attack.power);
-            
-            [attack, defend] = [defend, attack]
+           
 
             if(defend.health < 0){
                 defend.health = 0;
             }
+
+            [attack, defend] = [defend, attack]
 
             attack.showStatus();
             defend.showStatus();
@@ -97,7 +98,7 @@ class Employee {
 
     calculateSalary() {
         if (this.workingHours > 6){
-            return this.overtimeRate * this.workingHours;
+            return (this.hourlyRate * 6) + (this.overtimeRate * (this.workingHours-6));
         } else{
             return this.hourlyRate * this.workingHours;
         }
@@ -116,12 +117,12 @@ class ParttimeEmployee extends Employee {
     }
 }
 
-let fullTimeEmployee = new FulltimeEmployee("Robert", 100000, 75000);
-let partTimeEmployee = new ParttimeEmployee("Selena", 50000, 30000);
+let Robert = new FulltimeEmployee("Robert", 100000, 75000);
+let Selena = new ParttimeEmployee("Selena", 50000, 30000);
 
-fullTimeEmployee.addWorkingHours(8);
-partTimeEmployee.addWorkingHours(5);
+Robert.addWorkingHours(7);
+Selena.addWorkingHours(7);
 
-console.log("Full-time employee salary: IDR", fullTimeEmployee.calculateSalary());
-console.log("Part-time employee salary: IDR", partTimeEmployee.calculateSalary());
+console.log(Robert.name, "Full-time employee salary: IDR", Robert.calculateSalary());
+console.log(Selena.name, "Part-time employee salary: IDR", Selena.calculateSalary());
 
