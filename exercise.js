@@ -106,23 +106,28 @@ class Employee {
 }
 
 class FulltimeEmployee extends Employee {
-    constructor(name, hourlyRate, overtimeRate) {
+    constructor(name) {
+        const hourlyRate = 100000;
+        const overtimeRate = 75000;
         super(name, hourlyRate, overtimeRate); 
     }
 }
 
 class ParttimeEmployee extends Employee {
-    constructor(name, hourlyRate, overtimeRate) {
+    constructor(name) {
+        const hourlyRate = 50000;
+        const overtimeRate = 30000;
         super(name, hourlyRate, overtimeRate); 
     }
 }
 
-let Robert = new FulltimeEmployee("Robert", 100000, 75000);
-let Selena = new ParttimeEmployee("Selena", 50000, 30000);
 
-Robert.addWorkingHours(7);
-Selena.addWorkingHours(7);
+let robert = new FulltimeEmployee("Robert");
+let selena = new ParttimeEmployee("Selena");
 
-console.log(Robert.name, "Full-time employee salary: IDR", Robert.calculateSalary());
-console.log(Selena.name, "Part-time employee salary: IDR", Selena.calculateSalary());
+robert.addWorkingHours(5);
+selena.addWorkingHours(9);
+
+console.log(robert.name, "Full-time employee salary: IDR", robert.calculateSalary());
+console.log(selena.name, "Part-time employee salary: IDR", selena.calculateSalary());
 
