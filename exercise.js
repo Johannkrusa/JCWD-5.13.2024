@@ -79,13 +79,15 @@ let arena = new ShootingGame(player1,player2);
 
 arena.start();
 
-console.log("\n\n");
+console.log("\n");
 
 
 // exercise 2
 class Employee {
-    constructor(hourlyRate) {
+    constructor(name, hourlyRate, overtimeRate) {
+        this.name = name;
         this.hourlyRate = hourlyRate;
+        this.overtimeRate = overtimeRate;
         this.workingHours = 0;
     }
 
@@ -94,40 +96,28 @@ class Employee {
     }
 
     calculateSalary() {
-        return this.hourlyRate * this.workingHours;
+        if (this.workingHours > 6){
+            return this.overtimeRate * this.workingHours;
+        } else{
+            return this.hourlyRate * this.workingHours;
+        }
     }
 }
 
 class FulltimeEmployee extends Employee {
-    constructor() {
-        super(100000); 
-    }
-
-    calculateSalary() {
-        if (this.workingHours > 6) {
-            return 75000 * (this.workingHours - 6) + 600000; 
-        } else {
-            return super.calculateSalary();
-        }
+    constructor(name, hourlyRate, overtimeRate) {
+        super(name, hourlyRate, overtimeRate); 
     }
 }
 
 class ParttimeEmployee extends Employee {
-    constructor() {
-        super(50000); 
-    }
-
-    calculateSalary() {
-        if (this.workingHours > 6) {
-            return 30000 * (this.workingHours - 6) + 300000; 
-        } else {
-            return super.calculateSalary();
-        }
+    constructor(name, hourlyRate, overtimeRate) {
+        super(name, hourlyRate, overtimeRate); 
     }
 }
 
-let fullTimeEmployee = new FulltimeEmployee();
-let partTimeEmployee = new ParttimeEmployee();
+let fullTimeEmployee = new FulltimeEmployee("Robert", 100000, 75000);
+let partTimeEmployee = new ParttimeEmployee("Selena", 50000, 30000);
 
 fullTimeEmployee.addWorkingHours(8);
 partTimeEmployee.addWorkingHours(5);
